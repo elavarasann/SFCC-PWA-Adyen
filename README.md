@@ -77,6 +77,6 @@ In Jenkins, create two **Secret text** credentials (do not place either value in
 - `mrt-api-key` — Managed Runtime API key.
 - `mrt-user-email` — email address associated with that key.
 
-Create a Pipeline job using this repository, branch `main`, and script path `Jenkinsfile`. The default build validates and uploads a bundle. Select `DEPLOY_TO_MRT` only when you want Jenkins to deploy the newly uploaded bundle; Jenkins will then pause for approval.
+Create a Pipeline job using this repository, branch `main`, and script path `Jenkinsfile`. The default build validates the override source with Prettier, builds, and uploads a bundle. Select `DEPLOY_TO_MRT` only when you want Jenkins to deploy the newly uploaded bundle; Jenkins will then pause for approval.
 
 The pipeline currently exposes the existing `production` target. Once a `staging` target exists in Runtime Admin, add it to the `MRT_TARGET` choices in `Jenkinsfile` and use it for normal validation before production.
