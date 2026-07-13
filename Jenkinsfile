@@ -46,10 +46,16 @@ pipeline {
                     sh '''#!/bin/sh
                         set -eu
                         npm run build
-                        ./node_modules/.bin/pwa-kit-dev push \
-                          --user "$MRT_USER_EMAIL" \
-                          --key "$MRT_API_KEY"
                     '''
+                    timeout(time: 5, unit: 'MINUTES') {
+                        sh '''#!/bin/sh
+                            set -eu
+                            # pwa-kit-dev reads MRT_USER and MRT_API_KEY from the environment.
+                            # Avoid command-line flags so the API key cannot appear in process lists.
+                            export MRT_USER="$MRT_USER_EMAIL"
+                            ./node_modules/.bin/pwa-kit-dev push
+                        '''
+                    }
                 }
             }
         }
