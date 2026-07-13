@@ -21,11 +21,25 @@ Copy these files into a compatible Retail React App project, install dependencie
 
 ## Workflow
 
-1. PWA Kit sends the basket amount to the server to create an Adyen Checkout Session.
-2. The shopper enters an Adyen test card in Drop-in.
-3. Adyen authorises the test payment.
-4. The demo adds a masked test payment instrument to the basket and saves the billing address.
-5. The Commerce API creates the B2C Commerce order and opens the order-confirmation page.
+```text
+PWA Kit basket amount
+        ↓
+Server creates Adyen Checkout Session
+        ↓
+Customer enters test card in Adyen Drop-in
+        ↓
+Adyen authorises the Test payment
+        ↓
+Payment appears in Adyen Customer Area
+        ↓
+PWA Kit adds masked demo payment data to basket
+        ↓
+PWA Kit saves billing address
+        ↓
+Commerce API creates the B2C Commerce order
+        ↓
+Customer sees order confirmation
+```
 
 ## Important demo limitation
 
