@@ -45,9 +45,10 @@ pipeline {
                 ]) {
                     sh '''#!/bin/sh
                         set -eu
-                        umask 077
-                        printf '{"username":"%s","api_key":"%s"}\n' "$MRT_USER_EMAIL" "$MRT_API_KEY" > "$HOME/.mobify"
-                        npm run push
+                        npm run build
+                        ./node_modules/.bin/pwa-kit-dev push \
+                          --user "$MRT_USER_EMAIL" \
+                          --key "$MRT_API_KEY"
                     '''
                 }
             }

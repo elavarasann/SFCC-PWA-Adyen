@@ -77,6 +77,8 @@ In Jenkins, create two **Secret text** credentials (do not place either value in
 - `mrt-api-key` — Managed Runtime API key.
 - `mrt-user-email` — email address associated with that key.
 
+The pipeline passes these secrets directly to PWA Kit during bundle upload; it does not commit or retain a Managed Runtime credentials file.
+
 Create a Pipeline job using this repository, branch `main`, and script path `Jenkinsfile`. The default build normalizes the override source with Prettier, builds, and uploads a bundle. Select `DEPLOY_TO_MRT` only when you want Jenkins to deploy the newly uploaded bundle; Jenkins will then pause for approval.
 
 The pipeline currently exposes the existing `production` target. Once a `staging` target exists in Runtime Admin, add it to the `MRT_TARGET` choices in `Jenkinsfile` and use it for normal validation before production.
