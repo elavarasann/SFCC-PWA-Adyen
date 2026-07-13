@@ -2,6 +2,18 @@
 
 Educational local integration of Adyen Web Drop-in with Salesforce B2C Commerce PWA Kit.
 
+## Repository layout
+
+This repository contains the Adyen-specific PWA Kit override files, rather than a full copy of the Salesforce Retail React App:
+
+- `overrides/app/api/adyen-client.js` – server-side Adyen API client.
+- `overrides/app/ssr.js` – Adyen configuration, Sessions, payment-details, and webhook endpoints.
+- `overrides/app/components/adyen-checkout/index.jsx` – Drop-in and card-field styling.
+- `overrides/app/pages/checkout/partials/payment.jsx` – Adyen-only checkout and demo order bridge.
+- `package.json` and `package-lock.json` – required Adyen SDK dependencies.
+
+Copy these files into a compatible Retail React App project, install dependencies, and create `.env` from `.env.example`. Do not commit `.env`.
+
 ## What this demo creates
 
 - A real **Adyen Test payment**: authorised by Adyen and visible in Adyen Customer Area.
