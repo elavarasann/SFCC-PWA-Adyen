@@ -14,7 +14,7 @@
     "@salesforce/retail-react-app": "10.0.1"
   },
   "scripts": {
-    "lint": "prettier --check \"overrides/**/*.{js,jsx}\"",
+    "lint": "prettier --write \"overrides/**/*.{js,jsx}\"",
     "push": "npm run build && pwa-kit-dev push",
     "test": "pwa-kit-dev test",
     "build": "pwa-kit-dev build",
