@@ -55,3 +55,28 @@ For production, use an SFCC Adyen payment processor or cartridge that persists t
 - Adyen-only checkout with automatic demo order creation after authorisation.
 
 Never commit API keys, HMAC keys, real card data, or a local `.env` file.
+
+## Jenkins CI/CD
+
+`Jenkinsfile` provides a local Jenkins pipeline for this Managed Runtime project:
+
+```text
+GitHub source
+        ↓
+Jenkins: npm ci → lint → build
+        ↓
+PWA Kit uploads an immutable Managed Runtime bundle
+        ↓
+Optional approval in Jenkins
+        ↓
+Managed Runtime deploys that same bundle to production
+```
+
+In Jenkins, create two **Secret text** credentials (do not place either value in Git):
+
+- `mrt-api-key` — Managed Runtime API key.
+- `mrt-user-email` — email address associated with that key.
+
+Create a Pipeline job using this repository, branch `main`, and script path `Jenkinsfile`. The default build validates and uploads a bundle. Select `DEPLOY_TO_MRT` only when you want Jenkins to deploy the newly uploaded bundle; Jenkins will then pause for approval.
+
+The pipeline currently exposes the existing `production` target. Once a `staging` target exists in Runtime Admin, add it to the `MRT_TARGET` choices in `Jenkinsfile` and use it for normal validation before production.
