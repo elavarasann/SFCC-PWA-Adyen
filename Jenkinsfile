@@ -9,8 +9,8 @@ pipeline {
     parameters {
         choice(
             name: 'MRT_TARGET',
-            choices: ['production'],
-            description: 'Managed Runtime environment to deploy to. Add staging here after it is created in Runtime Admin.'
+            choices: ['pwt', 'production'],
+            description: 'Managed Runtime target to deploy to: pwt is staging; production is the live site.'
         )
         booleanParam(
             name: 'DEPLOY_TO_MRT',
